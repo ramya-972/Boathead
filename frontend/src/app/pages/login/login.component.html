@@ -1,0 +1,47 @@
+<h1 align="center" class="display-4 mb-5" style = "font-family: Bookman">Sign In</h1>
+<div style="width:40%; margin: 25px auto">
+
+    <div class="alert alert-danger" style = "font-family: Bookman" *ngIf="isInvalid">
+        Invalid username and password.
+    </div>
+    <div class="alert alert-info" style = "font-family: Bookman" *ngIf="isLogout">
+        You have been logged out.
+    </div>
+
+
+    <form #form='ngForm' (ngSubmit)="onSubmit()">
+        <div class="form-group" style = "font-family: Bookman;font-size:15px">
+            <label>Email address</label>
+            <input type="text" class="form-control form-control-lg" id="email" name="email" placeholder="Enter email"
+                   required autofocus [(ngModel)]="model.username" #email="ngModel" autocomplete="email" >
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                Email is required
+            </div>
+        </div>
+
+        <div class="form-group"style = "font-family: Bookman;font-size:15px">
+            <label>Password</label>
+            <input type="password" class="form-control form-control-lg" id="password" name="password"  autocomplete="password"
+                   placeholder="Password" required [(ngModel)]="model.password" #password='ngModel'>
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                Email is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <input type="checkbox" style = "font-family: Bookman;font-size:15px" id="remember_me" name="remember-me" [(ngModel)]="model.remembered">
+                <label for="remember_me" class="inline">Remember me</label>
+                <a class="float-right" routerLink="/register">Sign Up</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button [disabled]="!form.form.valid" type="submit" class="btn btn-lg btn-primary btn-block">Sign In</button>
+        </div>
+    </form>
+
+
+   
+
+</div>
